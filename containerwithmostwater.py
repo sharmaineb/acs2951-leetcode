@@ -40,18 +40,21 @@ class Solution:
 
 class Solution:
     def maxArea(self, height):
-        result = 0
-        i, n = 0, len(height) - 1
+        result = 0  # initialize the variable to store the maximum area
+        i, n = 0, len(height) - 1  # initialize two pointers, i and n
 
-        while i < n:
-            area = (n - i) * min(height[i], height[n])
-            result = max(result, area)
+        while i < n:  # loop until the two pointers meet or cross each other
+            area = (n - i) * min(height[i], height[n])  # calculate the area using the minimum height
 
-            if height[i] < height[n]:
-                i += 1
+            result = max(result, area)  # update the maximum area if necessary
+
+            if height[i] < height[n]:  # if the height at pointer i is smaller
+                i += 1  # increment i (move the left pointer to the right)
             else:
-                n -= 1
-        return result
+                n -= 1  # decrement n (move the right pointer to the left)
+
+        return result  # return the maximum area
+
 
 if __name__ == "__main__":
     test = Solution()

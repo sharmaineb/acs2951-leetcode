@@ -70,26 +70,36 @@ def threeSum(nums):
 
 class Solution:
     def threeSum(self, nums):
-        results = []
-        nums.sort()
+        results = []  # create an empty list to store the results
+        nums.sort()  # sort the input list in ascending order
 
-        for i, n in enumerate(nums):
-            if i > 0 and n == nums[i - 1]:
-                continue
+        for i in range(len(nums) - 2):  # iterate over the sorted list with index
+            if i > 0 and nums[i] == nums[i - 1]:  # check if the current number is a duplicate
+                continue  # if duplicate, skip to the next iteration
 
-            j, k = i + 1, len(nums) - 1
-            while j < k:
-                three_sum = n + nums[j] + nums[k]
-                if three_sum > 0:
-                    k -= 1
-                elif three_sum < 0:
-                    j += 1
-                else:
-                    results.append([n, nums[j], nums[k]])
-                    j += 1
-                    k -= 1
+            j, k = i + 1, len(nums) - 1  # set two pointers, j and k
 
-        return results
+            while j < k:  # loop until the two pointers meet or cross each other
+                three_sum = nums[i] + nums[j] + nums[k]  # calculate the sum of three numbers
+
+                if three_sum < 0:  # if the sum is less than 0
+                    j += 1  # increment j (move the left pointer to the right)
+                elif three_sum > 0:  # if the sum is greater than 0
+                    k -= 1  # decrement k (move the right pointer to the left)
+                else:  # if the sum is equal to 0 (a valid triplet is found)
+                    results.append([nums[i], nums[j], nums[k]])  # add the triplet to the results list
+
+                    while j < k and nums[j] == nums[j + 1]:  # skip duplicates for j
+                        j += 1
+                    while j < k and nums[k] == nums[k - 1]:  # skip duplicates for k
+                        k -= 1
+
+                    j += 1  # increment j (move the left pointer to the right)
+                    k -= 1  # decrement k (move the right pointer to the left)
+
+        return results  # return the list of triplets
+
+
     
 if __name__ == "__main__":
     test = Solution()

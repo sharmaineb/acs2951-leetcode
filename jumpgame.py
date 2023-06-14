@@ -23,18 +23,18 @@ Constraints:
 
 class Solution:
     def canJump(self, nums):
-        max_reach = 0                  # Initialize the maximum index that can be reached to 0
+        max_reach = 0 # initialize the maximum index that can be reached to 0
 
-        for i in range(len(nums)):    # Iterate over each index in the list
-            if i > max_reach:         # If the current index is greater than the maximum index that can be reached
-                return False          # Return False, as it is not possible to reach the current index
+        for i in range(len(nums)): # iterate over each index in the list
+            if i > max_reach: # if the current index is greater than the maximum index that can be reached
+                return False  # return False, as it is not possible to reach the current index
 
-            max_reach = max(max_reach, i + nums[i])  # Update the maximum index that can be reached
+            max_reach = max(max_reach, i + nums[i]) # update the maximum index that can be reached
 
-            if max_reach >= len(nums) - 1:  # If the maximum index that can be reached is greater than or equal to the last index
-                return True                # Return True, as it is possible to reach the last index
+            if max_reach >= len(nums) - 1: # if the maximum index that can be reached is greater than or equal to the last index
+                return True # return True, as it is possible to reach the last index
 
-        return False  # Return False, as it is not possible to reach the last index
+        return False # return False, as it is not possible to reach the last index
 
 if __name__ == "__main__":
     test = Solution()
